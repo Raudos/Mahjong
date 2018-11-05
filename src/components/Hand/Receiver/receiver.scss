@@ -1,0 +1,24 @@
+$width: 30px;
+
+.receiver {
+  position: relative;
+  width: 1px;
+  height: 100%;
+
+  &--received {
+    width: 50px;
+
+    .receiver__aerial {
+      width: calc(100% + 20px);
+      left: -10px;
+    }
+  }
+
+  &__aerial {
+    position: absolute;
+    width: $width;
+    left: -$width/2;
+    height: 100%;
+    z-index: 1000;
+  }
+}
