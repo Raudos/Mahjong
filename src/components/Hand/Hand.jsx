@@ -61,7 +61,7 @@ class Hand extends React.Component {
              grabbed={grabbed}
              index={index}
              isGrabbed={piece.id === grabbed}
-             maxLength={10}
+             maxLength={pieces.length}
              onPieceClick={this.handlePieceClick}
              piece={piece}
            />

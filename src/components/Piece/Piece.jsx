@@ -43,8 +43,27 @@ class Piece extends React.Component {
 
   calculateTurn = () => {
     const { index, maxLength, maxTurn } = this.props;
+    const isEven = !(maxLength%2);
+    const half = Math.floor(maxLength/2);
+    const turnPerPiece = maxTurn / half;
 
-    return maxTurn - ((maxTurn / maxLength * 2) * index);
+    if (isEven) {
+      if (index < half - 1) {
+        return turnPerPiece * ((half - 1) - index);
+      } else if (index > half) {
+        return -(turnPerPiece * (index - half));
+      }
+
+      return 0;
+    } else {
+      if (index < half) {
+        return turnPerPiece * (half - index);
+      } else if (index === half) {
+        return 0;
+      }
+
+      return -(turnPerPiece * (index - half));
+    }
   };
 
   calculateZIndex = () => {

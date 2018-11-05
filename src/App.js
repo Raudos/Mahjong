@@ -8,7 +8,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Hand numberOfPieces={11} />
+        <Hand numberOfPieces={10} />
       </div>
     );
   }

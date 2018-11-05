@@ -1,4 +1,6 @@
-body { font-family: sans-serif; }
+body {
+  font-family: sans-serif;
+}
 
 $width: 60px;
 $height: 78px;
@@ -32,9 +34,9 @@ $depth: 46px;
   transition: transform 1s;
 }
 
-.box.show-front  { transform: translateZ(-50px) rotateY(0deg); }
-
-
+.box.show-front {
+  transform: translateZ(-50px) rotateY(0deg);
+}
 
 .box__face {
   position: absolute;
@@ -82,38 +84,62 @@ $depth: 46px;
   top: -70px;
 }
 
-.box__face--front  {
+.box__face--front {
   background: #fefbe6; /* Old browsers */
   background: -moz-linear-gradient(top, #fefbe6 0%, #fcf3b4 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #fefbe6 0%,#fcf3b4 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #fefbe6 0%,#fcf3b4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefbe6', endColorstr='#fcf3b4',GradientType=0 ); /* IE6-9 */
+  background: -webkit-linear-gradient(top, #fefbe6 0%, #fcf3b4 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #fefbe6 0%, #fcf3b4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fefbe6', endColorstr='#fcf3b4', GradientType=0); /* IE6-9 */
 }
-.box__face--right  {
+
+.box__face--right {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fcf3b4+0,fefbe6+99 */
   background: #fcf3b4; /* Old browsers */
   background: -moz-linear-gradient(left, #fcf3b4 0%, #fefbe6 99%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, #fcf3b4 0%,#fefbe6 99%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, #fcf3b4 0%,#fefbe6 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcf3b4', endColorstr='#fefbe6',GradientType=1 ); /* IE6-9 */
+  background: -webkit-linear-gradient(left, #fcf3b4 0%, #fefbe6 99%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #fcf3b4 0%, #fefbe6 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcf3b4', endColorstr='#fefbe6', GradientType=1); /* IE6-9 */
 }
-.box__face--back   { background: hsla(120, 100%, 50%, 0.7); }
-.box__face--left   {
+
+.box__face--back {
+  background: hsla(120, 100%, 50%, 0.7);
+}
+
+.box__face--left {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefbe6+0,fcf3b4+100 */
   background: #fefbe6; /* Old browsers */
   background: -moz-linear-gradient(left, #fefbe6 0%, #fcf3b4 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, #fefbe6 0%,#fcf3b4 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, #fefbe6 0%,#fcf3b4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefbe6', endColorstr='#fcf3b4',GradientType=1 ); /* IE6-9 */
+  background: -webkit-linear-gradient(left, #fefbe6 0%, #fcf3b4 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #fefbe6 0%, #fcf3b4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fefbe6', endColorstr='#fcf3b4', GradientType=1); /* IE6-9 */
 }
-.box__face--top    { background: #fefbe6 }
+
+.box__face--top {
+  background: #fefbe6
+}
+
 //.box__face--bottom { background: hsla(300, 100%, 50%, 0.7); }
 
-.box__face--front  { transform: rotateY(  0deg) translateZ( 50px); }
-.box__face--back   { transform: rotateY(180deg) translateZ( 50px); }
+.box__face--front {
+  transform: rotateY(0deg) translateZ(50px);
+}
 
-.box__face--right  { transform: rotateY( 90deg) translateZ(150px); }
-.box__face--left   { transform: rotateY(-90deg) translateZ(150px); }
+.box__face--back {
+  transform: rotateY(180deg) translateZ(50px);
+}
 
-.box__face--top    { transform: rotateX( 90deg) translateZ(100px); }
-.box__face--bottom { transform: rotateX(-90deg) translateZ(100px); }
+.box__face--right {
+  transform: rotateY(90deg) translateZ(150px);
+}
+
+.box__face--left {
+  transform: rotateY(-90deg) translateZ(150px);
+}
+
+.box__face--top {
+  transform: rotateX(90deg) translateZ(100px);
+}
+
+.box__face--bottom {
+  transform: rotateX(-90deg) translateZ(100px);
+}
