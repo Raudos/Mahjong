@@ -29,7 +29,7 @@ class Hand extends React.Component {
 
   handleReceiverDrop = (index) => {
     const grabbedIndex = this.state.pieces.findIndex(elem => elem.id === this.state.grabbed);
-    this.state.pieces.splice(index, 0, this.state.pieces.splice(grabbedIndex, 1)[0]);
+    this.state.pieces.splice(index - 1, 0, this.state.pieces.splice(grabbedIndex, 1)[0]);
 
     this.setState({
       grabbed: null,
