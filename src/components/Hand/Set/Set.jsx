@@ -1,23 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import shortid from "shortid";
-import classNames from 'classnames';
 
-import './piece.scss';
+import Receiver from "./Receiver/Receiver";
+import Piece from "./Piece/Piece";
 
-class Piece extends React.Component {
+class Set extends React.Component {
   static propTypes = {
     grabbed: PropTypes.string,
     index: PropTypes.number.isRequired,
-    isGrabbed: PropTypes.bool.isRequired,
     maxLength: PropTypes.number.isRequired,
     maxTurn: PropTypes.number,
     minPerspective: PropTypes.number,
+    onDrop: PropTypes.func.isRequired,
+    onHover: PropTypes.func.isRequired,
     onPieceClick: PropTypes.func.isRequired,
     perspectiveChange: PropTypes.number,
     piece: PropTypes.shape({
       id: PropTypes.string.isRequired,
     }),
+    received: PropTypes.number,
   };
 
   static defaultProps = {
@@ -78,45 +79,45 @@ class Piece extends React.Component {
     return index;
   };
 
-  handleClick = () => {
-    this.props.onPieceClick(this.props.isGrabbed ? null : this.props.piece.id);
-  };
-
   render() {
+    const { grabbed, index, maxLength, onDrop, onHover, onPieceClick, piece, received } = this.props;
+
     return (
-      <div className={classNames('scene', { isGrabbed: this.props.isGrabbed })} style={{ zIndex: this.calculateZIndex() }}>
-        <div className="box show-front" onClick={this.handleClick} style={{ transform: `translateZ(${this.calculatePerspective()}px) rotateY(${this.calculateTurn()}deg)` }}>
-          <div className="box__face box__face--front">
-            <img className="icon" src={require(`../../assets/pieces/${this.props.piece.icon}.svg`)} alt={this.props.piece.icon} />
-          </div>
-          <div className="box__face box__face--back"></div>
-          <div className="box__face box__face--right"></div>
-          <div className="box__face box__face--left"></div>
-          <div className="box__face box__face--top"></div>
-          <div className="box__face box__face--bottom"></div>
-        </div>
-      </div>
+      <React.Fragment>
+        <Receiver
+          grabbed={grabbed}
+          index={index}
+          onDrop={onDrop}
+          onHover={onHover}
+          received={received}
+        />
+
+        <Piece
+          grabbed={grabbed}
+          index={index}
+          isGrabbed={piece.id === grabbed}
+          maxLength={maxLength}
+          onPieceClick={onPieceClick}
+          piece={piece}
+          style={{
+            perspective: this.calculatePerspective(),
+            turn: this.calculateTurn(),
+            zIndex: this.calculateZIndex(),
+          }}
+        />
+
+        {index === maxLength -1 &&
+          <Receiver
+            grabbed={grabbed}
+            index={maxLength}
+            onDrop={onDrop}
+            onHover={onHover}
+            received={received}
+          />
+        }
+      </React.Fragment>
     );
   }
 }
 
-export class PieceElement {
-  static icons = [
-    'Man1',
-    'Man2',
-    'Man3',
-    'Man4',
-    'Man5',
-    'Man6',
-    'Man7',
-    'Man8',
-  ];
-
-  static generateIcon = () => PieceElement.icons[Math.floor(Math.random() * PieceElement.icons.length)];
-
-  constructor() {
-    this.id = shortid.generate();
-    this.icon = PieceElement.generateIcon();
-  }
-};
-export default Piece;
+export default Set;

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Piece, { PieceElement } from '../Piece/Piece';
-import Receiver from './Receiver/Receiver';
+import { PieceElement } from './Set/Piece/Piece';
+import Set from './Set/Set';
 
 import './hand.scss';
 
@@ -44,38 +44,21 @@ class Hand extends React.Component {
 
   render() {
     const { grabbed, pieces, received } = this.state;
-    console.log(this.state)
+
     return (
       <div className="hand">
         {pieces.map((piece, index) => (
-         <React.Fragment key={piece.id}>
-           <Receiver
-             grabbed={grabbed}
-             index={index}
-             onDrop={this.handleReceiverDrop}
-             onHover={this.handleReceiverHover}
-             received={received}
-           />
-
-           <Piece
-             grabbed={grabbed}
-             index={index}
-             isGrabbed={piece.id === grabbed}
-             maxLength={pieces.length}
-             onPieceClick={this.handlePieceClick}
-             piece={piece}
-           />
-
-           {index === pieces.length -1 &&
-              <Receiver
-                grabbed={grabbed}
-                index={pieces.length}
-                onDrop={this.handleReceiverDrop}
-                onHover={this.handleReceiverHover}
-                received={received}
-              />
-           }
-         </React.Fragment>
+          <Set
+            key={piece.id}
+            grabbed={grabbed}
+            index={index}
+            maxLength={pieces.length}
+            onDrop={this.handleReceiverDrop}
+            onHover={this.handleReceiverHover}
+            onPieceClick={this.handlePieceClick}
+            piece={piece}
+            received={received}
+          />
         ))}
       </div>
     );
