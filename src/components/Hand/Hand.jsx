@@ -15,26 +15,26 @@ class Hand extends React.Component {
     super(props);
 
     this.state = {
-      grabbed: null,
+      grabbedIndex: null,
       pieces: Array(this.props.numberOfPieces).fill('').map(() => new PieceElement()),
       received: null,
     };
   }
 
   handlePieceClick = (id = null) => {
-    this.setState({
-      grabbed: id
-    });
+    this.setState(state => ({
+      grabbedIndex: id ? state.pieces.findIndex(obj => obj.id === id) : null,
+    }));
   };
 
   handleReceiverDrop = (index) => {
-    const grabbedIndex = this.state.pieces.findIndex(elem => elem.id === this.state.grabbed);
+    const { grabbedIndex } = this.state;
     const targetIndex = grabbedIndex < index ? index - 1 : index;
 
     this.state.pieces.splice(targetIndex, 0, this.state.pieces.splice(grabbedIndex, 1)[0]);
 
     this.setState({
-      grabbed: null,
+      grabbedIndex: null,
       received: null,
     });
   };
@@ -46,14 +46,14 @@ class Hand extends React.Component {
   };
 
   render() {
-    const { grabbed, pieces, received } = this.state;
+    const { grabbedIndex, pieces, received } = this.state;
 
     return (
       <div className="hand">
         {pieces.map((piece, index) => (
           <Set
             key={piece.id}
-            grabbed={grabbed}
+            grabbedIndex={grabbedIndex}
             index={index}
             maxLength={pieces.length}
             onDrop={this.handleReceiverDrop}

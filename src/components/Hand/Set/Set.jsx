@@ -7,6 +7,7 @@ import Piece from "./Piece/Piece";
 class Set extends React.Component {
   static propTypes = {
     grabbed: PropTypes.string,
+    grabbedIndex: PropTypes.number,
     index: PropTypes.number.isRequired,
     maxLength: PropTypes.number.isRequired,
     maxTurn: PropTypes.number,
@@ -80,7 +81,7 @@ class Set extends React.Component {
   };
 
   render() {
-    const { grabbed, index, maxLength, onDrop, onHover, onPieceClick, piece, received } = this.props;
+    const { grabbedIndex, index, maxLength, onDrop, onHover, onPieceClick, piece, received } = this.props;
     const style = {
       perspective: this.calculatePerspective(),
       turn: this.calculateTurn(),
@@ -90,7 +91,7 @@ class Set extends React.Component {
     return (
       <React.Fragment>
         <Receiver
-          grabbed={grabbed}
+          grabbedIndex={grabbedIndex}
           index={index}
           onDrop={onDrop}
           onHover={onHover}
@@ -99,9 +100,8 @@ class Set extends React.Component {
         />
 
         <Piece
-          grabbed={grabbed}
           index={index}
-          isGrabbed={piece.id === grabbed}
+          isGrabbed={index === grabbedIndex}
           maxLength={maxLength}
           onPieceClick={onPieceClick}
           piece={piece}
@@ -110,7 +110,7 @@ class Set extends React.Component {
 
         {index === maxLength -1 &&
           <Receiver
-            grabbed={grabbed}
+            grabbedIndex={grabbedIndex}
             index={maxLength}
             onDrop={onDrop}
             onHover={onHover}

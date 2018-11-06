@@ -13,15 +13,17 @@ class Receiver extends React.Component {
   };
 
   render() {
-    const { style } = this.props;
+    const { grabbedIndex, index,  style } = this.props;
 
-    if (!this.props.grabbed) {
+    if (grabbedIndex === null) {
+      return null;
+    } else if (index === grabbedIndex || grabbedIndex + 1 === index) {
       return null;
     }
 
     return (
       <div
-        className={classNames('receiver', 'scene', { 'receiver--received': this.props.index === this.props.received, 'receiver--grabbed': this.props.grabbed }) }
+        className={classNames('receiver', 'scene', { 'receiver--received': index === this.props.received }) }
         onClick={() => this.props.onDrop(this.props.index)}
         onMouseEnter={this.handleMouseEnter}
         onMouseOut={this.handleMouseOut}
