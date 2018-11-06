@@ -13,13 +13,23 @@ class Receiver extends React.Component {
   };
 
   render() {
+    const { style } = this.props;
+
     if (!this.props.grabbed) {
       return null;
     }
 
     return (
-      <div onClick={() => this.props.onDrop(this.props.index)} onMouseEnter={this.handleMouseEnter} onMouseOut={this.handleMouseOut} className={classNames('receiver', { 'receiver--received': this.props.index === this.props.received })}>
+      <div
+        className={classNames('receiver', 'scene', { 'receiver--received': this.props.index === this.props.received, 'receiver--grabbed': this.props.grabbed }) }
+        onClick={() => this.props.onDrop(this.props.index)}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseOut={this.handleMouseOut}
+      >
         <div className='receiver__aerial' />
+        <div className='receiver__shadow box show-front' style={{ transform: `translateZ(${style.perspective}px) rotateY(${style.turn}deg)` }}>
+          <div className='box__face box__face--bottom'/>
+        </div>
       </div>
     );
   }

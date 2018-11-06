@@ -81,6 +81,11 @@ class Set extends React.Component {
 
   render() {
     const { grabbed, index, maxLength, onDrop, onHover, onPieceClick, piece, received } = this.props;
+    const style = {
+      perspective: this.calculatePerspective(),
+      turn: this.calculateTurn(),
+      zIndex: this.calculateZIndex(),
+    };
 
     return (
       <React.Fragment>
@@ -90,6 +95,7 @@ class Set extends React.Component {
           onDrop={onDrop}
           onHover={onHover}
           received={received}
+          style={style}
         />
 
         <Piece
@@ -99,11 +105,7 @@ class Set extends React.Component {
           maxLength={maxLength}
           onPieceClick={onPieceClick}
           piece={piece}
-          style={{
-            perspective: this.calculatePerspective(),
-            turn: this.calculateTurn(),
-            zIndex: this.calculateZIndex(),
-          }}
+          style={style}
         />
 
         {index === maxLength -1 &&
@@ -113,6 +115,7 @@ class Set extends React.Component {
             onDrop={onDrop}
             onHover={onHover}
             received={received}
+            style={style}
           />
         }
       </React.Fragment>
