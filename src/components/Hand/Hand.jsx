@@ -14,6 +14,8 @@ class Hand extends React.Component {
   constructor(props) {
     super(props);
 
+    PieceElement.checkForFilesIntegrity();
+
     this.state = {
       grabbedIndex: null,
       pieces: Array(this.props.numberOfPieces).fill('').map(() => new PieceElement()),
