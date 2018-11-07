@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { PieceElement } from './Set/Piece/Piece';
+import PieceElement from '../../models/piece';
 import Set from './Set/Set';
 
 import './hand.scss';

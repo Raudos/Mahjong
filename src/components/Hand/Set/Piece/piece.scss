@@ -7,17 +7,20 @@ $height: 78px;
 $depth: 46px;
 
 .scene {
-  width: $width;
+  &:not(.receiver) {
+    width: $width;
+    margin: 5px;
+
+    &:hover {
+      top: -10px;
+    }
+  }
+
   height: $height;
   perspective: 400px;
-  margin: 5px;
   transition: 1s;
   top: 0;
   position: relative;
-
-  &:hover {
-    top: -10px;
-  }
 
   &.isGrabbed {
     top: -25px;

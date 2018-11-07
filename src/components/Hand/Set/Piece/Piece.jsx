@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import shortid from "shortid";
 import classNames from 'classnames';
 
 import './piece.scss';
@@ -42,23 +41,4 @@ Piece.propTypes = {
   }),
 };
 
-export class PieceElement {
-  static icons = [
-    'Man1',
-    'Man2',
-    'Man3',
-    'Man4',
-    'Man5',
-    'Man6',
-    'Man7',
-    'Man8',
-  ];
-
-  static generateIcon = () => PieceElement.icons[Math.floor(Math.random() * PieceElement.icons.length)];
-
-  constructor() {
-    this.id = shortid.generate();
-    this.icon = PieceElement.generateIcon();
-  }
-};
 export default Piece;
