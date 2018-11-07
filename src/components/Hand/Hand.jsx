@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import PieceElement from '../../models/piece';
 import Set from './Set/Set';
+import EventsSubscriptions from './events';
 
 import './hand.scss';
 
@@ -16,11 +17,20 @@ class Hand extends React.Component {
 
     PieceElement.checkForFilesIntegrity();
 
+    this.eventsSubscriptions = new EventsSubscriptions(this);
     this.state = {
       grabbedIndex: null,
       pieces: Array(this.props.numberOfPieces).fill('').map(() => new PieceElement()),
       received: null,
     };
+  }
+
+  componentDidMount() {
+    this.eventsSubscriptions.subscribe();
+  }
+
+  componentWillUnmount() {
+    this.eventsSubscriptions.unSubscribe();
   }
 
   handlePieceClick = (id = null) => {
